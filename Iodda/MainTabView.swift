@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainTabView: View {
     // MARK: - Properties
+    @EnvironmentObject var appData: ApplicationData
     @State private var tabPaths: [String: NavigationPath] = [
         "budgets_list": NavigationPath(),
         "pdfs_list": NavigationPath(),
@@ -54,4 +55,5 @@ struct MainTabView: View {
 // MARK: - Preview
 #Preview {
     MainTabView()
+        .environmentObject(ApplicationData.shared)
 }

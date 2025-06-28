@@ -1,6 +1,15 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "--" : {
+
+    },
+    "💰" : {
+
+    },
+    "Budget Reports Made Simple" : {
+
+    },
     "budgets_list_view_navigationTitle" : {
       "localizations" : {
         "en" : {
@@ -17,8 +26,59 @@
         }
       }
     },
+    "create_first_budget" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Create your first budget"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Создайте свой первый бюджет"
+          }
+        }
+      }
+    },
     "Hello, World!" : {
 
+    },
+    "Iodda" : {
+
+    },
+    "lets_get_it_started" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Let's get it started"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Давайте начнем"
+          }
+        }
+      }
+    },
+    "no_budgets_yet" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No budgets yet"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Еще нет бюджетов"
+          }
+        }
+      }
     },
     "pdfs_list_view_navigationTitle" : {
       "localizations" : {
@@ -84,6 +144,22 @@
         }
       }
     },
+    "start_tracking_expenses" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start tracking expenses"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начните следить за своими расходами"
+          }
+        }
+      }
+    },
     "total_amount" : {
       "localizations" : {
         "en" : {
@@ -96,6 +172,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Общая сумма"
+          }
+        }
+      }
+    },
+    "your_first_budget" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your first budget"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваш первый бюджет"
           }
         }
       }

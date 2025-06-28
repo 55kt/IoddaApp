@@ -9,25 +9,32 @@ import SwiftUI
 
 struct BudgetsListView: View {
     // MARK: - Properties
-    @State private var budgets = BudgetData.sampleBudgets
+    @EnvironmentObject var appData: ApplicationData
+    @State private var searchText: String = ""
     
     // MARK: - Body
     var body: some View {
-        List(budgets) { budget in
-            BudgetCellView(
-                budgetName: budget.budgetName,
-                totalAmount: budget.totalAmount,
-                spentAmount: budget.spentAmount,
-                remainingAmount: budget.remainingAmount,
-                creationDate: budget.creationDate,
-                emoji: budget.emoji,
-                gradientColors: budget.gradientColors,
-                currentLanguage: budget.currentLanguage
-            )
+        ZStack {
+            
+            IoddaLogo(logoSize: 200, logoOpacity: 0.5, showAppName: false)
+                .ignoresSafeArea()
+                .zIndex(0)
+            
+            List {
+                ForEach(appData.filteredBudgets) { budget in
+                    BudgetCellView(budget: budget)
+                }// ForEach
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.clear)
+            }// List
             .listStyle(.plain)
-            .listRowBackground(Color.clear)
-            .listRowSeparator(.hidden)
-        }// List
+            .searchable(text: $searchText)
+            .onChange(of: searchText, initial: false) { oldValue, value in
+                let search = value.trimmingCharacters(in: .whitespaces)
+                appData.filterValues(search: search)
+            }// onChange
+            .zIndex(1)
+        }// ZStack
     }// Body
 }// View
 
@@ -36,5 +43,6 @@ struct BudgetsListView: View {
     NavigationStack {
         BudgetsListView()
             .navigationTitle("Budgets")
+            .environmentObject(ApplicationData.shared)
     }
 }

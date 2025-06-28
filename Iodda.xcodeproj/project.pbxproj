@@ -12,11 +12,13 @@
 		4B8AF2D02E0EED9400E83492 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2CF2E0EED9400E83492 /* MainTabView.swift */; };
 		4B8AF2D22E0EEFA500E83492 /* BudgetsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2D12E0EEFA500E83492 /* BudgetsListView.swift */; };
 		4B8AF2D42E0EEFE300E83492 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 4B8AF2D32E0EEFE300E83492 /* Localizable.xcstrings */; };
-		4B8AF2D62E0EF2E700E83492 /* AppBackgroundGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2D52E0EF2E700E83492 /* AppBackgroundGradient.swift */; };
+		4B8AF2D62E0EF2E700E83492 /* StaticWaveBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2D52E0EF2E700E83492 /* StaticWaveBackground.swift */; };
 		4B8AF2D82E0EF68900E83492 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2D72E0EF68900E83492 /* SettingsView.swift */; };
 		4B8AF2DA2E0EF6AB00E83492 /* PdfListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2D92E0EF6AB00E83492 /* PdfListView.swift */; };
 		4B8AF2E22E0EF84700E83492 /* BudgetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2E12E0EF84700E83492 /* BudgetCellView.swift */; };
 		4B8AF2E42E0F0DC300E83492 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2E32E0F0DC300E83492 /* Data.swift */; };
+		4B8AF2E62E102E2700E83492 /* BudgetEmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2E52E102E2700E83492 /* BudgetEmptyListView.swift */; };
+		4B8AF2E82E10416300E83492 /* IoddaLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2E72E10416300E83492 /* IoddaLogo.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,11 +28,13 @@
 		4B8AF2CF2E0EED9400E83492 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		4B8AF2D12E0EEFA500E83492 /* BudgetsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetsListView.swift; sourceTree = "<group>"; };
 		4B8AF2D32E0EEFE300E83492 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		4B8AF2D52E0EF2E700E83492 /* AppBackgroundGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackgroundGradient.swift; sourceTree = "<group>"; };
+		4B8AF2D52E0EF2E700E83492 /* StaticWaveBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticWaveBackground.swift; sourceTree = "<group>"; };
 		4B8AF2D72E0EF68900E83492 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		4B8AF2D92E0EF6AB00E83492 /* PdfListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfListView.swift; sourceTree = "<group>"; };
 		4B8AF2E12E0EF84700E83492 /* BudgetCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCellView.swift; sourceTree = "<group>"; };
 		4B8AF2E32E0F0DC300E83492 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		4B8AF2E52E102E2700E83492 /* BudgetEmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetEmptyListView.swift; sourceTree = "<group>"; };
+		4B8AF2E72E10416300E83492 /* IoddaLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoddaLogo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +93,7 @@
 			children = (
 				4B8AF2D12E0EEFA500E83492 /* BudgetsListView.swift */,
 				4B8AF2E12E0EF84700E83492 /* BudgetCellView.swift */,
+				4B8AF2E52E102E2700E83492 /* BudgetEmptyListView.swift */,
 			);
 			path = Budgets;
 			sourceTree = "<group>";
@@ -112,7 +117,8 @@
 		4B8AF2DF2E0EF81000E83492 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				4B8AF2D52E0EF2E700E83492 /* AppBackgroundGradient.swift */,
+				4B8AF2D52E0EF2E700E83492 /* StaticWaveBackground.swift */,
+				4B8AF2E72E10416300E83492 /* IoddaLogo.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -201,8 +207,10 @@
 			files = (
 				4B8AF2D82E0EF68900E83492 /* SettingsView.swift in Sources */,
 				4B8AF2D22E0EEFA500E83492 /* BudgetsListView.swift in Sources */,
-				4B8AF2D62E0EF2E700E83492 /* AppBackgroundGradient.swift in Sources */,
+				4B8AF2D62E0EF2E700E83492 /* StaticWaveBackground.swift in Sources */,
 				4B8AF2E22E0EF84700E83492 /* BudgetCellView.swift in Sources */,
+				4B8AF2E82E10416300E83492 /* IoddaLogo.swift in Sources */,
+				4B8AF2E62E102E2700E83492 /* BudgetEmptyListView.swift in Sources */,
 				4B8AF2CD2E0EEC9700E83492 /* IoddaApp.swift in Sources */,
 				4B8AF2D02E0EED9400E83492 /* MainTabView.swift in Sources */,
 				4B8AF2DA2E0EF6AB00E83492 /* PdfListView.swift in Sources */,

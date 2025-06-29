@@ -17,8 +17,14 @@
 		4B8AF2DA2E0EF6AB00E83492 /* PdfListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2D92E0EF6AB00E83492 /* PdfListView.swift */; };
 		4B8AF2E22E0EF84700E83492 /* BudgetCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2E12E0EF84700E83492 /* BudgetCellView.swift */; };
 		4B8AF2E42E0F0DC300E83492 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2E32E0F0DC300E83492 /* Data.swift */; };
-		4B8AF2E62E102E2700E83492 /* BudgetEmptyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2E52E102E2700E83492 /* BudgetEmptyListView.swift */; };
+		4B8AF2E62E102E2700E83492 /* BudgetEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2E52E102E2700E83492 /* BudgetEmptyStateView.swift */; };
 		4B8AF2E82E10416300E83492 /* IoddaLogo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2E72E10416300E83492 /* IoddaLogo.swift */; };
+		4B8AF2EB2E115F6400E83492 /* BudgetExpensesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2EA2E115F6400E83492 /* BudgetExpensesListView.swift */; };
+		4B8AF2ED2E115F7700E83492 /* ExpenseCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2EC2E115F7700E83492 /* ExpenseCellView.swift */; };
+		4B8AF2EF2E11605200E83492 /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2EE2E11605200E83492 /* AddExpenseView.swift */; };
+		4B8AF2F72E117FEB00E83492 /* ExpenseEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2F62E117FEB00E83492 /* ExpenseEmptyStateView.swift */; };
+		4B8AF2F92E11821E00E83492 /* EmptyStateButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2F82E11821E00E83492 /* EmptyStateButtonView.swift */; };
+		4B8AF2FB2E119E8C00E83492 /* ExpensesListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2FA2E119E8C00E83492 /* ExpensesListHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +39,14 @@
 		4B8AF2D92E0EF6AB00E83492 /* PdfListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfListView.swift; sourceTree = "<group>"; };
 		4B8AF2E12E0EF84700E83492 /* BudgetCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCellView.swift; sourceTree = "<group>"; };
 		4B8AF2E32E0F0DC300E83492 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
-		4B8AF2E52E102E2700E83492 /* BudgetEmptyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetEmptyListView.swift; sourceTree = "<group>"; };
+		4B8AF2E52E102E2700E83492 /* BudgetEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetEmptyStateView.swift; sourceTree = "<group>"; };
 		4B8AF2E72E10416300E83492 /* IoddaLogo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoddaLogo.swift; sourceTree = "<group>"; };
+		4B8AF2EA2E115F6400E83492 /* BudgetExpensesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetExpensesListView.swift; sourceTree = "<group>"; };
+		4B8AF2EC2E115F7700E83492 /* ExpenseCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseCellView.swift; sourceTree = "<group>"; };
+		4B8AF2EE2E11605200E83492 /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
+		4B8AF2F62E117FEB00E83492 /* ExpenseEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEmptyStateView.swift; sourceTree = "<group>"; };
+		4B8AF2F82E11821E00E83492 /* EmptyStateButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateButtonView.swift; sourceTree = "<group>"; };
+		4B8AF2FA2E119E8C00E83492 /* ExpensesListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesListHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				4B8AF2DC2E0EF7DD00E83492 /* Budgets */,
+				4B8AF2E92E115F4900E83492 /* Expenses */,
 				4B8AF2DD2E0EF7EB00E83492 /* PDF */,
 				4B8AF2DE2E0EF7F600E83492 /* Settings */,
 			);
@@ -93,7 +106,7 @@
 			children = (
 				4B8AF2D12E0EEFA500E83492 /* BudgetsListView.swift */,
 				4B8AF2E12E0EF84700E83492 /* BudgetCellView.swift */,
-				4B8AF2E52E102E2700E83492 /* BudgetEmptyListView.swift */,
+				4B8AF2E52E102E2700E83492 /* BudgetEmptyStateView.swift */,
 			);
 			path = Budgets;
 			sourceTree = "<group>";
@@ -119,6 +132,7 @@
 			children = (
 				4B8AF2D52E0EF2E700E83492 /* StaticWaveBackground.swift */,
 				4B8AF2E72E10416300E83492 /* IoddaLogo.swift */,
+				4B8AF2F82E11821E00E83492 /* EmptyStateButtonView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -129,6 +143,18 @@
 				4B8AF2D32E0EEFE300E83492 /* Localizable.xcstrings */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		4B8AF2E92E115F4900E83492 /* Expenses */ = {
+			isa = PBXGroup;
+			children = (
+				4B8AF2EA2E115F6400E83492 /* BudgetExpensesListView.swift */,
+				4B8AF2EC2E115F7700E83492 /* ExpenseCellView.swift */,
+				4B8AF2EE2E11605200E83492 /* AddExpenseView.swift */,
+				4B8AF2F62E117FEB00E83492 /* ExpenseEmptyStateView.swift */,
+				4B8AF2FA2E119E8C00E83492 /* ExpensesListHeaderView.swift */,
+			);
+			path = Expenses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,16 +231,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B8AF2EF2E11605200E83492 /* AddExpenseView.swift in Sources */,
 				4B8AF2D82E0EF68900E83492 /* SettingsView.swift in Sources */,
+				4B8AF2FB2E119E8C00E83492 /* ExpensesListHeaderView.swift in Sources */,
 				4B8AF2D22E0EEFA500E83492 /* BudgetsListView.swift in Sources */,
 				4B8AF2D62E0EF2E700E83492 /* StaticWaveBackground.swift in Sources */,
+				4B8AF2ED2E115F7700E83492 /* ExpenseCellView.swift in Sources */,
 				4B8AF2E22E0EF84700E83492 /* BudgetCellView.swift in Sources */,
 				4B8AF2E82E10416300E83492 /* IoddaLogo.swift in Sources */,
-				4B8AF2E62E102E2700E83492 /* BudgetEmptyListView.swift in Sources */,
+				4B8AF2E62E102E2700E83492 /* BudgetEmptyStateView.swift in Sources */,
+				4B8AF2EB2E115F6400E83492 /* BudgetExpensesListView.swift in Sources */,
 				4B8AF2CD2E0EEC9700E83492 /* IoddaApp.swift in Sources */,
 				4B8AF2D02E0EED9400E83492 /* MainTabView.swift in Sources */,
 				4B8AF2DA2E0EF6AB00E83492 /* PdfListView.swift in Sources */,
+				4B8AF2F92E11821E00E83492 /* EmptyStateButtonView.swift in Sources */,
 				4B8AF2E42E0F0DC300E83492 /* Data.swift in Sources */,
+				4B8AF2F72E117FEB00E83492 /* ExpenseEmptyStateView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

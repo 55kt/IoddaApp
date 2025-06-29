@@ -4,7 +4,46 @@
     "--" : {
 
     },
+    "%lld расходов" : {
+
+    },
+    "%lld%%" : {
+
+    },
+    "%lldx" : {
+
+    },
     "💰" : {
+
+    },
+    "🛍️" : {
+
+    },
+    "€" : {
+
+    },
+    "€%@" : {
+
+    },
+    "€0.00" : {
+
+    },
+    "0.00" : {
+
+    },
+    "1" : {
+
+    },
+    "1x" : {
+
+    },
+    "Add Expense" : {
+
+    },
+    "amount" : {
+
+    },
+    "Basic Information" : {
 
     },
     "Budget Reports Made Simple" : {
@@ -26,7 +65,11 @@
         }
       }
     },
+    "category" : {
+
+    },
     "create_first_budget" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -42,7 +85,31 @@
         }
       }
     },
+    "Date" : {
+
+    },
+    "Default Category" : {
+
+    },
+    "Default Location" : {
+
+    },
+    "Default Name" : {
+
+    },
+    "Default Note" : {
+
+    },
+    "Details" : {
+
+    },
+    "expense_name" : {
+
+    },
     "Hello, World!" : {
+
+    },
+    "Icon" : {
 
     },
     "Iodda" : {
@@ -64,6 +131,9 @@
         }
       }
     },
+    "location" : {
+
+    },
     "no_budgets_yet" : {
       "localizations" : {
         "en" : {
@@ -80,6 +150,9 @@
         }
       }
     },
+    "Notes" : {
+
+    },
     "pdfs_list_view_navigationTitle" : {
       "localizations" : {
         "en" : {
@@ -95,6 +168,9 @@
           }
         }
       }
+    },
+    "quantity" : {
+
     },
     "remaining" : {
       "localizations" : {
@@ -160,6 +236,9 @@
         }
       }
     },
+    "Today" : {
+
+    },
     "total_amount" : {
       "localizations" : {
         "en" : {
@@ -191,6 +270,27 @@
           }
         }
       }
+    },
+    "Ваша покупка" : {
+
+    },
+    "из €%@" : {
+
+    },
+    "Магазин или место" : {
+
+    },
+    "Начните отслеживать свои траты\nи контролируйте бюджет" : {
+
+    },
+    "Пока нет расходов" : {
+
+    },
+    "Прогресс" : {
+
+    },
+    "Сегодня" : {
+
     }
   },
   "version" : "1.0"

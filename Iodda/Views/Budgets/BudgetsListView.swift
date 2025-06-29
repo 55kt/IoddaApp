@@ -11,6 +11,7 @@ struct BudgetsListView: View {
     // MARK: - Properties
     @EnvironmentObject var appData: ApplicationData
     @State private var searchText: String = ""
+    @State private var selectedBudget: Budget?
     
     // MARK: - Body
     var body: some View {
@@ -23,6 +24,9 @@ struct BudgetsListView: View {
             List {
                 ForEach(appData.filteredBudgets) { budget in
                     BudgetCellView(budget: budget)
+                        .onTapGesture {
+                            selectedBudget = budget
+                        }
                 }// ForEach
                 .listRowSeparator(.hidden)
                 .listRowBackground(Color.clear)
@@ -30,11 +34,16 @@ struct BudgetsListView: View {
             .listStyle(.plain)
             .searchable(text: $searchText)
             .onChange(of: searchText, initial: false) { oldValue, value in
-                let search = value.trimmingCharacters(in: .whitespaces)
-                appData.filterValues(search: search)
+                withAnimation {
+                    let search = value.trimmingCharacters(in: .whitespaces)
+                    appData.filterValues(search: search)
+                }
             }// onChange
             .zIndex(1)
         }// ZStack
+        .sheet(item: $selectedBudget) { budget in
+            BudgetExpensesListView(budget: budget)
+        }
     }// Body
 }// View
 

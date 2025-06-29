@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct IoddaApp: App {
+    
     var body: some Scene {
         WindowGroup {
             MainTabView()
+                .environmentObject(ApplicationData.shared)
         }
     }
 }

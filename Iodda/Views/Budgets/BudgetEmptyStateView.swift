@@ -11,7 +11,8 @@ struct BudgetEmptyListView: View {
     // MARK: - Properties
     @State private var isAnimating = false
     @State private var floatingOffset: CGFloat = 0
-        
+    @State private var isButtonAnimating = false
+    
     // MARK: - Body
     var body: some View {
         VStack(spacing: 32) {
@@ -88,7 +89,7 @@ struct BudgetEmptyListView: View {
                                 Text("start_tracking_expenses")
                                     .font(.caption)
                                     .foregroundStyle(.secondary)
-                            }
+                            }// HStack
                         }// VStack
                         Spacer()
                     }// HStack
@@ -163,37 +164,8 @@ struct BudgetEmptyListView: View {
                 }// VStack
                 
                 // Create budget button
-                Button(action: {
-                    // TODO: Handle create budget action
-                    print("Create first budget tapped")
-                }) {
-                    HStack(spacing: 12) {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.title3)
-                        
-                        Text("create_first_budget")
-                            .font(.headline)
-                            .fontWeight(.semibold)
-                    }// HStack
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 32)
-                    .padding(.vertical, 16)
-                    .background(
-                        LinearGradient(
-                            colors: [.blue, .purple],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        ),
-                        in: RoundedRectangle(cornerRadius: 16)
-                    )// background
-                    .shadow(color: .blue.opacity(0.3), radius: 10, x: 0, y: 5)
-                }// Button
-                .scaleEffect(isAnimating ? 1.05 : 1.0)
-                .animation(
-                    .easeInOut(duration: 2.5)
-                    .repeatForever(autoreverses: true),
-                    value: isAnimating
-                )// animation
+                EmptyStateButtonView(buttonName: "Add your first budget") {}
+                
             }// VStack
         }// VStack
         .padding(.horizontal, 20)

@@ -12,115 +12,152 @@ struct BudgetExpensesListView: View {
     let budget: Budget
     @State private var animateProgress = false
     @State private var showEmptyState = false
+    @State private var searchText = ""
     
     // MARK: - Body
     var body: some View {
-        GeometryReader { geometry in
+        NavigationStack {
             ZStack {
                 // Dynamic gradient background
                 BackgroundGradientView(budget: budget)
-                    .ignoresSafeArea()
+                    .ignoresSafeArea(.all)
                     .zIndex(0)
                 
                 // Background particles effect
                 ParticlesView()
-                    .ignoresSafeArea()
+                    .ignoresSafeArea(.all)
                     .opacity(0.4)
                     .zIndex(1)
                 
-                // Main content
-                VStack(spacing: 0) {
+                // Main List Content
+                List {
                     // Premium budget header
-                    ExpensesListHeaderView(budget: budget, animateProgress: $animateProgress)
-                        .padding(.horizontal, 20)
-                        .padding(.top, geometry.safeAreaInsets.top > 0 ? 0 : 20)
+                    Section {
+                        ExpensesListHeaderView(budget: budget, animateProgress: $animateProgress)
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
+                    }// Premium budget header
                     
-                    // Section title with spacing
-                    HStack {
-                        Text("Expenses")
+                    // Expenses Section
+                    Section {
+                        if budget.expenses.isEmpty {
+                            ExpenseEmptyStateView()
+                                .listRowBackground(Color.clear)
+                                .listRowSeparator(.hidden)
+                                .listRowInsets(EdgeInsets())
+                                .opacity(showEmptyState ? 1 : 0)
+                                .scaleEffect(showEmptyState ? 1 : 0.8)
+                                .animation(.spring(response: 0.8, dampingFraction: 0.8).delay(0.3), value: showEmptyState)
+                        } else {
+                            ForEach(Array(filteredExpenses.enumerated()), id: \.element.id) { index, expense in
+                                ExpenseCellView(expense: expense, budget: budget)
+                                    .listRowBackground(Color.clear)
+                                    .listRowSeparator(.hidden)
+                                    .listRowInsets(EdgeInsets(top: 6, leading: 20, bottom: 6, trailing: 20))
+                                    .transition(.asymmetric(
+                                        insertion: .move(edge: .trailing).combined(with: .opacity),
+                                        removal: .move(edge: .leading).combined(with: .opacity)
+                                    ))
+                                    .animation(.spring(response: 0.6, dampingFraction: 0.8).delay(Double(index) * 0.05), value: budget.expenses)
+                            }// ForEach
+                        }// if - else
+                    } header: {
+                        Text("expenses_list_header")
                             .font(.title2)
                             .fontWeight(.bold)
                             .foregroundStyle(.primary)
-                        
-                        
-                        
+                            .textCase(nil)
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 32)
-                    .padding(.bottom, 16)
-                    
-                    // Content area
-                    if budget.expenses.isEmpty {
-                        ExpenseEmptyStateView()
-                            .opacity(showEmptyState ? 1 : 0)
-                            .scaleEffect(showEmptyState ? 1 : 0.8)
-                            .animation(.spring(response: 0.8, dampingFraction: 0.8).delay(0.3), value: showEmptyState)
-                    } else {
-                        ExpensesListView(budget: budget)
-                    }
-                    
-                    Spacer()
-                }
+                }// List
+                .listStyle(.plain)
+                .scrollContentBackground(.hidden)
+                .searchable(text: $searchText, prompt: "search_expenses_prompt")
                 .zIndex(2)
-            }
-        }
-        .navigationTitle(budget.budgetName)
-        .navigationBarTitleDisplayMode(.large)
-        .onAppear {
-            withAnimation(.easeInOut(duration: 1.2)) {
-                animateProgress = true
-            }
-            withAnimation(.easeInOut(duration: 0.6).delay(0.5)) {
-                showEmptyState = true
-            }
-        }
-    }
-}
-
-// MARK: - Background Gradient View
-struct BackgroundGradientView: View {
-    let budget: Budget
+                
+                // Floating Add Button
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        FloatingAddButton(gradientColors: budget.gradientColors)
+                            .padding(.trailing, 20)
+                            .padding(.bottom, 30)
+                    }// HStack
+                }// VStack
+                .zIndex(3)
+            }// ZStack
+            .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                withAnimation(.easeInOut(duration: 1.2)) {
+                    animateProgress = true
+                }
+                withAnimation(.easeInOut(duration: 0.6).delay(0.5)) {
+                    showEmptyState = true
+                }
+            }// onAppear
+        }// NavigationStack
+    }// body
     
-    var body: some View {
-        LinearGradient(
-            colors: [
-                budget.gradientColors.first?.opacity(0.12) ?? Color.blue.opacity(0.12),
-                Color.clear,
-                budget.gradientColors.last?.opacity(0.08) ?? Color.purple.opacity(0.08)
-            ],
-            startPoint: .topLeading,
-            endPoint: .bottomTrailing
-        )
+    // MARK: - Computed Properties
+    private var filteredExpenses: [Expense] {
+        if searchText.isEmpty {
+            return budget.expenses
+        } else {
+            return budget.expenses.filter { expense in
+                expense.expenseName.localizedCaseInsensitiveContains(searchText) ||
+                (expense.location.localizedCaseInsensitiveContains(searchText)) ||
+                (expense.note?.localizedCaseInsensitiveContains(searchText) ?? false)
+            }
+        }
     }
-}
+    
+}// View
 
-// MARK: - Budget Header View
-
-
-// MARK: - Emoji Icon View
-struct EmojiIconView: View {
-    let emoji: String
+// MARK: - Floating Add Button
+struct FloatingAddButton: View {
     let gradientColors: [Color]
-    let animate: Bool
+    @State private var isPressed = false
     
     var body: some View {
-        ZStack {
-            Circle()
-                .fill(
-                    RadialGradient(
-                        colors: gradientColors.map { $0.opacity(0.15) },
-                        center: .center,
-                        startRadius: 5,
-                        endRadius: 22
-                    )
+        Button(action: {
+            // TODO: Add logic for adding expense
+            print("Add expense tapped")
+        }) {
+            Image(systemName: "plus")
+                .font(.system(size: 20, weight: .semibold))
+                .foregroundStyle(.white)
+                .frame(width: 56, height: 56)
+                .background(
+                    Circle()
+                        .fill(
+                            LinearGradient(
+                                colors: gradientColors,
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .shadow(color: .black.opacity(0.2), radius: 8, x: 0, y: 4)
+                        .shadow(color: gradientColors.first?.opacity(0.3) ?? .blue.opacity(0.3), radius: 12, x: 0, y: 2)
                 )
-                .frame(width: 44, height: 44)
-            
-            Text(emoji)
-                .font(.system(size: 24))
-                .scaleEffect(animate ? 1.05 : 1.0)
-                .animation(.easeInOut(duration: 2).repeatForever(autoreverses: true), value: animate)
+                .scaleEffect(isPressed ? 0.95 : 1.0)
         }
+        .pressEvents(
+            onPress: { isPressed = true },
+            onRelease: { isPressed = false }
+        )
+        .animation(.easeInOut(duration: 0.15), value: isPressed)
+    }
+}
+
+// MARK: - Press Events Modifier
+extension View {
+    func pressEvents(onPress: @escaping () -> Void, onRelease: @escaping () -> Void) -> some View {
+        self.simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in onPress() }
+                .onEnded { _ in onRelease() }
+        )
     }
 }
 
@@ -143,152 +180,42 @@ struct AmountDisplayView: View {
                     .contentTransition(.numericText())
             }
             
-            Text("из €\(String(format: "%.0f", budget.totalAmount))")
+            Text("from €\(String(format: "%.0f", budget.totalAmount))")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
     }
 }
 
-// MARK: - Progress Indicator View
-struct ProgressIndicatorView: View {
-    let budget: Budget
-    let animateProgress: Bool
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            HStack {
-                Text("Progress")
-                    .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundStyle(.secondary)
-                
-                Spacer()
-                
-                Text("\(Int(budget.progressPercentage * 100))%")
-                    .font(.caption)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(budget.isOverBudget ? .red : .primary)
-                    .contentTransition(.numericText())
-            }
-            
-            GeometryReader { geometry in
-                ZStack(alignment: .leading) {
-                    // Background track
-                    RoundedRectangle(cornerRadius: 6)
-                        .fill(Color.black.opacity(0.08))
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 6)
-                                .fill(.ultraThinMaterial)
-                        )
-                        .frame(height: 8)
-                    
-                    // Progress fill with animation
-                    RoundedRectangle(cornerRadius: 6)
-                        .fill(
-                            LinearGradient(
-                                colors: budget.isOverBudget ?
-                                [.red, .orange] :
-                                [budget.gradientColors.first ?? .green,
-                                 budget.gradientColors.last ?? .teal],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-                        .frame(
-                            width: animateProgress ?
-                            max(8, min(geometry.size.width, CGFloat(budget.progressPercentage) * geometry.size.width)) : 8,
-                            height: 8
-                        )
-                        .shadow(color: (budget.gradientColors.first ?? .green).opacity(0.4), radius: 3, x: 0, y: 1)
-                        .animation(.easeInOut(duration: 1.5), value: animateProgress)
-                }
-            }
-            .frame(height: 8)
-        }
-    }
-}
-
-// MARK: - Expenses List View
-struct ExpensesListView: View {
-    let budget: Budget
-    
-    var body: some View {
-        ScrollView {
-            LazyVStack(spacing: 12) {
-                ForEach(Array(budget.expenses.enumerated()), id: \.element.id) { index, expense in
-                    ExpenseCellView(expense: expense, budget: budget)
-                        .transition(.asymmetric(
-                            insertion: .move(edge: .trailing).combined(with: .opacity),
-                            removal: .move(edge: .leading).combined(with: .opacity)
-                        ))
-                        .animation(.spring(response: 0.6, dampingFraction: 0.8).delay(Double(index) * 0.05), value: budget.expenses)
-                }
-            }
-            .padding(.horizontal, 20)
-            .padding(.bottom, 100) // Safe area for bottom
-        }
-    }
-}
-
-// MARK: - Particles View for Background Effect
-struct ParticlesView: View {
-    @State private var animate = false
-    
-    var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                ForEach(0..<12, id: \.self) { i in
-                    Circle()
-                        .fill(
-                            RadialGradient(
-                                colors: [Color.blue.opacity(0.08), Color.clear],
-                                center: .center,
-                                startRadius: 1,
-                                endRadius: 8
-                            )
-                        )
-                        .frame(width: CGFloat.random(in: 3...8))
-                        .position(
-                            x: animate ? CGFloat.random(in: 0...geometry.size.width) : CGFloat.random(in: 0...geometry.size.width),
-                            y: animate ? CGFloat.random(in: 0...geometry.size.height) : CGFloat.random(in: 0...geometry.size.height)
-                        )
-                        .animation(
-                            .linear(duration: Double.random(in: 8...15))
-                            .repeatForever(autoreverses: true)
-                            .delay(Double.random(in: 0...3)),
-                            value: animate
-                        )
-                }
-            }
-            .onAppear {
-                animate = true
-            }
-        }
-    }
-}
-
-// MARK: - Custom Button Style
-struct PressedButtonStyle: ButtonStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .scaleEffect(configuration.isPressed ? 0.96 : 1.0)
-            .animation(.easeInOut(duration: 0.1), value: configuration.isPressed)
-    }
-}
-
 // MARK: - Preview
 #Preview {
-    NavigationStack {
-        BudgetExpensesListView(budget: Budget(
-            budgetName: "Trip in Paris",
-            totalAmount: 1500.0,
-            spentAmount: 850.0,
-            remainingAmount: 650.0,
-            creationDate: Date(),
-            emoji: "🇫🇷",
-            gradientColors: [Color.blue.opacity(0.6), Color.purple.opacity(0.4)],
-            expenses: []
-        ))
-    }
+    BudgetExpensesListView(budget: Budget(
+        budgetName: "Trip in Paris",
+        totalAmount: 1500.0,
+        spentAmount: 850.0,
+        remainingAmount: 650.0,
+        creationDate: Date(),
+        emoji: "🇫🇷",
+        gradientColors: [Color.blue.opacity(0.6), Color.purple.opacity(0.4)],
+        expenses: [
+            Expense(
+                expenseName: "Sample Expense",
+                amount: 49.99,
+                creationDate: Date(),
+                emoji: "🏋️",
+                location: "Sample Location",
+                quantity: 1,
+                note: "Sample note"
+            ),
+            Expense(
+                expenseName: "Another Expense",
+                amount: 25.50,
+                creationDate: Date().addingTimeInterval(-86400),
+                emoji: "🥤",
+                location: "Another Location",
+                quantity: 2,
+                note: nil
+            )
+        ]
+    ))
 }

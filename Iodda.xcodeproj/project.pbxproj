@@ -25,6 +25,10 @@
 		4B8AF2F72E117FEB00E83492 /* ExpenseEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2F62E117FEB00E83492 /* ExpenseEmptyStateView.swift */; };
 		4B8AF2F92E11821E00E83492 /* EmptyStateButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2F82E11821E00E83492 /* EmptyStateButtonView.swift */; };
 		4B8AF2FB2E119E8C00E83492 /* ExpensesListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2FA2E119E8C00E83492 /* ExpensesListHeaderView.swift */; };
+		4B8AF2FD2E12DBC000E83492 /* ProgressIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2FC2E12DBC000E83492 /* ProgressIndicatorView.swift */; };
+		4B8AF2FF2E12E0E300E83492 /* BackgroundGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2FE2E12E0E300E83492 /* BackgroundGradientView.swift */; };
+		4B8AF3012E12E29500E83492 /* EmojiIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF3002E12E29500E83492 /* EmojiIconView.swift */; };
+		4B8AF3032E12E62600E83492 /* ParticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF3022E12E62600E83492 /* ParticlesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +51,10 @@
 		4B8AF2F62E117FEB00E83492 /* ExpenseEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseEmptyStateView.swift; sourceTree = "<group>"; };
 		4B8AF2F82E11821E00E83492 /* EmptyStateButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateButtonView.swift; sourceTree = "<group>"; };
 		4B8AF2FA2E119E8C00E83492 /* ExpensesListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesListHeaderView.swift; sourceTree = "<group>"; };
+		4B8AF2FC2E12DBC000E83492 /* ProgressIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressIndicatorView.swift; sourceTree = "<group>"; };
+		4B8AF2FE2E12E0E300E83492 /* BackgroundGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradientView.swift; sourceTree = "<group>"; };
+		4B8AF3002E12E29500E83492 /* EmojiIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiIconView.swift; sourceTree = "<group>"; };
+		4B8AF3022E12E62600E83492 /* ParticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticlesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +141,10 @@
 				4B8AF2D52E0EF2E700E83492 /* StaticWaveBackground.swift */,
 				4B8AF2E72E10416300E83492 /* IoddaLogo.swift */,
 				4B8AF2F82E11821E00E83492 /* EmptyStateButtonView.swift */,
+				4B8AF2FC2E12DBC000E83492 /* ProgressIndicatorView.swift */,
+				4B8AF2FE2E12E0E300E83492 /* BackgroundGradientView.swift */,
+				4B8AF3002E12E29500E83492 /* EmojiIconView.swift */,
+				4B8AF3022E12E62600E83492 /* ParticlesView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -233,10 +245,13 @@
 			files = (
 				4B8AF2EF2E11605200E83492 /* AddExpenseView.swift in Sources */,
 				4B8AF2D82E0EF68900E83492 /* SettingsView.swift in Sources */,
+				4B8AF2FD2E12DBC000E83492 /* ProgressIndicatorView.swift in Sources */,
 				4B8AF2FB2E119E8C00E83492 /* ExpensesListHeaderView.swift in Sources */,
 				4B8AF2D22E0EEFA500E83492 /* BudgetsListView.swift in Sources */,
 				4B8AF2D62E0EF2E700E83492 /* StaticWaveBackground.swift in Sources */,
+				4B8AF2FF2E12E0E300E83492 /* BackgroundGradientView.swift in Sources */,
 				4B8AF2ED2E115F7700E83492 /* ExpenseCellView.swift in Sources */,
+				4B8AF3012E12E29500E83492 /* EmojiIconView.swift in Sources */,
 				4B8AF2E22E0EF84700E83492 /* BudgetCellView.swift in Sources */,
 				4B8AF2E82E10416300E83492 /* IoddaLogo.swift in Sources */,
 				4B8AF2E62E102E2700E83492 /* BudgetEmptyStateView.swift in Sources */,
@@ -244,6 +259,7 @@
 				4B8AF2CD2E0EEC9700E83492 /* IoddaApp.swift in Sources */,
 				4B8AF2D02E0EED9400E83492 /* MainTabView.swift in Sources */,
 				4B8AF2DA2E0EF6AB00E83492 /* PdfListView.swift in Sources */,
+				4B8AF3032E12E62600E83492 /* ParticlesView.swift in Sources */,
 				4B8AF2F92E11821E00E83492 /* EmptyStateButtonView.swift in Sources */,
 				4B8AF2E42E0F0DC300E83492 /* Data.swift in Sources */,
 				4B8AF2F72E117FEB00E83492 /* ExpenseEmptyStateView.swift in Sources */,

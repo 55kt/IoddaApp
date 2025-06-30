@@ -85,6 +85,29 @@ struct ExpensesListHeaderView: View {
             .padding(.horizontal, 20)
             .padding(.vertical, 18)
         }
-        .frame(minHeight: 120)
+        .frame(maxHeight: 150)
+        .frame(maxWidth: .infinity)
     }
+}
+
+#Preview {
+    @Previewable @State var animateProgress = true
+    
+ Group {
+        ExpensesListHeaderView(
+            budget: Budget(
+                budgetName: "Sample Budget",
+                totalAmount: 1000.0,
+                spentAmount: 500.0,
+                remainingAmount: 500.0,
+                creationDate: Date(),
+                emoji: "💰",
+                gradientColors: [Color.blue, Color.purple],
+                expenses: []
+            ),
+            animateProgress: $animateProgress
+        )
+    }
+    .padding()
+    .background(Color(.systemGroupedBackground))
 }

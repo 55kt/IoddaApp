@@ -4,9 +4,6 @@
     "--" : {
 
     },
-    "%lld расходов" : {
-
-    },
     "%lld%%" : {
 
     },
@@ -16,25 +13,16 @@
     "💰" : {
 
     },
-    "🛍️" : {
-
-    },
     "€" : {
 
     },
     "€%@" : {
 
     },
-    "€0.00" : {
-
-    },
     "0.00" : {
 
     },
     "1" : {
-
-    },
-    "1x" : {
 
     },
     "Add Expense" : {
@@ -68,23 +56,6 @@
     "category" : {
 
     },
-    "create_first_budget" : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Create your first budget"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Создайте свой первый бюджет"
-          }
-        }
-      }
-    },
     "Date" : {
 
     },
@@ -104,6 +75,19 @@
 
     },
     "expense_name" : {
+
+    },
+    "expenses_list_header" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Expenses"
+          }
+        }
+      }
+    },
+    "from €%@" : {
 
     },
     "Hello, World!" : {
@@ -134,6 +118,9 @@
     "location" : {
 
     },
+    "No expenses yet" : {
+
+    },
     "no_budgets_yet" : {
       "localizations" : {
         "en" : {
@@ -151,7 +138,14 @@
       }
     },
     "Notes" : {
-
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заметки"
+          }
+        }
+      }
     },
     "pdfs_list_view_navigationTitle" : {
       "localizations" : {
@@ -169,8 +163,31 @@
         }
       }
     },
+    "progress_bar_line_title" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Progress"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Прогресс"
+          }
+        }
+      }
+    },
     "quantity" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quantity"
+          }
+        }
+      }
     },
     "remaining" : {
       "localizations" : {
@@ -184,6 +201,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Остаток"
+          }
+        }
+      }
+    },
+    "search_expenses_prompt" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search expenses…"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Поиск расходов"
           }
         }
       }
@@ -220,6 +253,9 @@
         }
       }
     },
+    "Start tracking your spending\nand control your budget" : {
+
+    },
     "start_tracking_expenses" : {
       "localizations" : {
         "en" : {
@@ -237,6 +273,9 @@
       }
     },
     "Today" : {
+
+    },
+    "Total amount" : {
 
     },
     "total_amount" : {
@@ -270,27 +309,6 @@
           }
         }
       }
-    },
-    "Ваша покупка" : {
-
-    },
-    "из €%@" : {
-
-    },
-    "Магазин или место" : {
-
-    },
-    "Начните отслеживать свои траты\nи контролируйте бюджет" : {
-
-    },
-    "Пока нет расходов" : {
-
-    },
-    "Прогресс" : {
-
-    },
-    "Сегодня" : {
-
     }
   },
   "version" : "1.0"

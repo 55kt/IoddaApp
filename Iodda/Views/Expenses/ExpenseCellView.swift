@@ -17,7 +17,7 @@ struct ExpenseCellView: View {
         ZStack {
             // Material background with subtle gradient
             RoundedRectangle(cornerRadius: 16)
-                .fill(.ultraThinMaterial)
+                .fill(.thinMaterial)
                 .overlay(
                     RoundedRectangle(cornerRadius: 16)
                         .stroke(

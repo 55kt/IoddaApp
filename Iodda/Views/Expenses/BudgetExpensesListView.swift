@@ -50,16 +50,12 @@ struct BudgetExpensesListView: View {
                                 .scaleEffect(showEmptyState ? 1 : 0.8)
                                 .animation(.spring(response: 0.8, dampingFraction: 0.8).delay(0.3), value: showEmptyState)
                         } else {
-                            ForEach(Array(filteredExpenses.enumerated()), id: \.element.id) { index, expense in
+                            ForEach(enumeratedExpenses, id: \.1.id) {index, expense in
                                 ExpenseCellView(expense: expense, budget: budget)
                                     .listRowBackground(Color.clear)
                                     .listRowSeparator(.hidden)
                                     .listRowInsets(EdgeInsets(top: 6, leading: 20, bottom: 6, trailing: 20))
-                                    .transition(.asymmetric(
-                                        insertion: .move(edge: .trailing).combined(with: .opacity),
-                                        removal: .move(edge: .leading).combined(with: .opacity)
-                                    ))
-                                    .animation(.spring(response: 0.6, dampingFraction: 0.8).delay(Double(index) * 0.05), value: budget.expenses)
+                                    
                             }// ForEach
                         }// if - else
                     } header: {
@@ -75,6 +71,7 @@ struct BudgetExpensesListView: View {
                 .searchable(text: $searchText, prompt: "search_expenses_prompt")
                 .zIndex(2)
                 
+                
                 // Floating Add Button
                 VStack {
                     Spacer()
@@ -87,6 +84,7 @@ struct BudgetExpensesListView: View {
                 }// VStack
                 .zIndex(3)
             }// ZStack
+            .navigationTitle(budget.budgetName)
             .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 withAnimation(.easeInOut(duration: 1.2)) {
@@ -100,6 +98,10 @@ struct BudgetExpensesListView: View {
     }// body
     
     // MARK: - Computed Properties
+    private var enumeratedExpenses: [(Int, Expense)] {
+        Array(filteredExpenses.enumerated())
+    }
+    
     private var filteredExpenses: [Expense] {
         if searchText.isEmpty {
             return budget.expenses

@@ -29,6 +29,8 @@
 		4B8AF2FF2E12E0E300E83492 /* BackgroundGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF2FE2E12E0E300E83492 /* BackgroundGradientView.swift */; };
 		4B8AF3012E12E29500E83492 /* EmojiIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF3002E12E29500E83492 /* EmojiIconView.swift */; };
 		4B8AF3032E12E62600E83492 /* ParticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF3022E12E62600E83492 /* ParticlesView.swift */; };
+		4B8AF3052E1430D900E83492 /* GlassmorphicBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF3042E1430D900E83492 /* GlassmorphicBackground.swift */; };
+		4B8AF3072E143B4700E83492 /* AmountCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B8AF3062E143B4700E83492 /* AmountCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 		4B8AF2FE2E12E0E300E83492 /* BackgroundGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundGradientView.swift; sourceTree = "<group>"; };
 		4B8AF3002E12E29500E83492 /* EmojiIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiIconView.swift; sourceTree = "<group>"; };
 		4B8AF3022E12E62600E83492 /* ParticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticlesView.swift; sourceTree = "<group>"; };
+		4B8AF3042E1430D900E83492 /* GlassmorphicBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassmorphicBackground.swift; sourceTree = "<group>"; };
+		4B8AF3062E143B4700E83492 /* AmountCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,8 @@
 				4B8AF2FE2E12E0E300E83492 /* BackgroundGradientView.swift */,
 				4B8AF3002E12E29500E83492 /* EmojiIconView.swift */,
 				4B8AF3022E12E62600E83492 /* ParticlesView.swift */,
+				4B8AF3042E1430D900E83492 /* GlassmorphicBackground.swift */,
+				4B8AF3062E143B4700E83492 /* AmountCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -255,6 +261,7 @@
 				4B8AF2E22E0EF84700E83492 /* BudgetCellView.swift in Sources */,
 				4B8AF2E82E10416300E83492 /* IoddaLogo.swift in Sources */,
 				4B8AF2E62E102E2700E83492 /* BudgetEmptyStateView.swift in Sources */,
+				4B8AF3052E1430D900E83492 /* GlassmorphicBackground.swift in Sources */,
 				4B8AF2EB2E115F6400E83492 /* BudgetExpensesListView.swift in Sources */,
 				4B8AF2CD2E0EEC9700E83492 /* IoddaApp.swift in Sources */,
 				4B8AF2D02E0EED9400E83492 /* MainTabView.swift in Sources */,
@@ -263,6 +270,7 @@
 				4B8AF2F92E11821E00E83492 /* EmptyStateButtonView.swift in Sources */,
 				4B8AF2E42E0F0DC300E83492 /* Data.swift in Sources */,
 				4B8AF2F72E117FEB00E83492 /* ExpenseEmptyStateView.swift in Sources */,
+				4B8AF3072E143B4700E83492 /* AmountCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -56,6 +56,9 @@
     "category" : {
 
     },
+    "Created" : {
+
+    },
     "Date" : {
 
     },
@@ -205,6 +208,9 @@
         }
       }
     },
+    "Remaining" : {
+
+    },
     "search_expenses_prompt" : {
       "localizations" : {
         "en" : {
@@ -253,6 +259,9 @@
         }
       }
     },
+    "Spent" : {
+
+    },
     "Start tracking your spending\nand control your budget" : {
 
     },
@@ -275,7 +284,7 @@
     "Today" : {
 
     },
-    "Total amount" : {
+    "Total Budget" : {
 
     },
     "total_amount" : {

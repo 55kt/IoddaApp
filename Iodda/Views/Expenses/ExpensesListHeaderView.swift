@@ -10,103 +10,160 @@ import SwiftUI
 struct ExpensesListHeaderView: View {
     let budget: Budget
     @Binding var animateProgress: Bool
+    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         ZStack {
-            // Glassmorphism background with enhanced effects
-            RoundedRectangle(cornerRadius: 24)
-                .fill(.ultraThinMaterial)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 24)
-                        .fill(
-                            LinearGradient(
-                                colors: budget.gradientColors.map { $0.opacity(0.25) },
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                )
-                .overlay(
-                    RoundedRectangle(cornerRadius: 24)
-                        .stroke(
-                            LinearGradient(
-                                colors: [
-                                    Color.white.opacity(0.3),
-                                    Color.white.opacity(0.1),
-                                    Color.clear
-                                ],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ),
-                            lineWidth: 1
-                        )
-                )
-                .shadow(color: budget.gradientColors.first?.opacity(0.2) ?? Color.blue.opacity(0.2),
-                        radius: 15, x: 0, y: 8)
-                .shadow(color: .black.opacity(0.08), radius: 4, x: 0, y: 2)
+            // Glassmorphism background with theme adaptation
+            GlassmorphicBackground(
+                gradientColors: budget.gradientColors,
+                cornerRadius: 24
+            )
             
-            VStack(spacing: 20) {
-                // Budget info with enhanced typography
-                HStack(alignment: .center, spacing: 16) {
+            VStack(spacing: 24) {
+                // Top section with emoji and main amounts
+                HStack(alignment: .center, spacing: 20) {
                     // Animated emoji with glow effect
                     EmojiIconView(
                         emoji: budget.emoji,
                         gradientColors: budget.gradientColors,
-                        animate: animateProgress
+                        size: 80
                     )
                     
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(budget.budgetName)
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.primary)
-                            .lineLimit(1)
-                        
-                        HStack(spacing: 4) {
-                            Image(systemName: "calendar")
+                    Spacer()
+                    
+                    // Main financial info
+                    VStack(alignment: .trailing, spacing: 8) {
+                        // Total amount
+                        VStack(alignment: .trailing, spacing: 2) {
+                            Text("Total Budget")
                                 .font(.caption)
+                                .fontWeight(.medium)
                                 .foregroundStyle(.secondary)
                             
-                            Text("Total amount")
+                            Text(budget.totalAmount, format: .currency(code: "USD"))
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .foregroundStyle(.primary)
+                        }
+                        
+                        // Remaining amount with color coding
+                        VStack(alignment: .trailing, spacing: 2) {
+                            Text("Remaining")
                                 .font(.caption)
+                                .fontWeight(.medium)
+                                .foregroundStyle(.secondary)
+                            
+                            Text(budget.remainingAmount, format: .currency(code: "USD"))
+                                .font(.title3)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(remainingAmountColor)
+                        }
+                    }
+                }
+                
+                // Financial stats row
+                HStack(spacing: 20) {
+                    // Spent amount
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack(spacing: 4) {
+                            Image(systemName: "minus.circle.fill")
+                                .font(.caption)
+                                .foregroundStyle(.red)
+                            
+                            Text("Spent")
+                                .font(.caption)
+                                .fontWeight(.medium)
                                 .foregroundStyle(.secondary)
                         }
+                        
+                        Text(budget.spentAmount, format: .currency(code: "USD"))
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.primary)
                     }
                     
                     Spacer()
                     
-                    // Enhanced amount display
-                    AmountDisplayView(budget: budget)
+                    // Creation date
+                    VStack(alignment: .trailing, spacing: 4) {
+                        HStack(spacing: 4) {
+                            Text("Created")
+                                .font(.caption)
+                                .fontWeight(.medium)
+                                .foregroundStyle(.secondary)
+                            
+                            Image(systemName: "calendar")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        
+                        Text(budget.creationDate, style: .date)
+                            .font(.subheadline)
+                            .fontWeight(.medium)
+                            .foregroundStyle(.primary)
+                    }
                 }
                 
-                // Enhanced progress indicator
+                // Progress indicator
                 ProgressIndicatorView(budget: budget, animateProgress: animateProgress)
+                
             }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 18)
+            .padding(.horizontal, 24)
+            .padding(.vertical, 20)
         }
-        .frame(maxHeight: 150)
         .frame(maxWidth: .infinity)
+    }
+    
+    // Helper computed property for remaining amount color
+    private var remainingAmountColor: Color {
+        let percentage = budget.remainingAmount / budget.totalAmount
+        
+        if percentage > 0.5 {
+            return .green
+        } else if percentage > 0.2 {
+            return .orange
+        } else {
+            return .red
+        }
     }
 }
 
 #Preview {
     @Previewable @State var animateProgress = true
     
- Group {
+    Group {
+        // Light theme preview
         ExpensesListHeaderView(
             budget: Budget(
                 budgetName: "Sample Budget",
                 totalAmount: 1000.0,
-                spentAmount: 500.0,
-                remainingAmount: 500.0,
+                spentAmount: 350.0,
+                remainingAmount: 650.0,
                 creationDate: Date(),
                 emoji: "💰",
                 gradientColors: [Color.blue, Color.purple],
+                expenses: [],
+            ),
+            animateProgress: $animateProgress
+        )
+        .preferredColorScheme(.light)
+        
+        // Dark theme preview
+        ExpensesListHeaderView(
+            budget: Budget(
+                budgetName: "Sample Budget",
+                totalAmount: 1000.0,
+                spentAmount: 850.0,
+                remainingAmount: 150.0,
+                creationDate: Date(),
+                emoji: "🛒",
+                gradientColors: [Color.orange, Color.red],
                 expenses: []
             ),
             animateProgress: $animateProgress
         )
+        .preferredColorScheme(.dark)
     }
     .padding()
     .background(Color(.systemGroupedBackground))

@@ -18,16 +18,6 @@ struct BudgetExpensesListView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Dynamic gradient background
-                BackgroundGradientView(budget: budget)
-                    .ignoresSafeArea(.all)
-                    .zIndex(0)
-                
-                // Background particles effect
-                ParticlesView()
-                    .ignoresSafeArea(.all)
-                    .opacity(0.4)
-                    .zIndex(1)
                 
                 // Main List Content
                 List {

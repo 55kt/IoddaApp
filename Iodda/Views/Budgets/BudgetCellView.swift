@@ -24,91 +24,102 @@ struct BudgetCellView: View {
     
     // MARK: - Body
     var body: some View {
-        ZStack {
-            // Glassmorphism background with theme adaptation
-            GlassmorphicBackground(
-                gradientColors: budget.gradientColors,
-                cornerRadius: 24
+        RoundedRectangle(cornerRadius: 16)
+            .fill(.ultraThinMaterial)
+            .stroke(
+                Color(.systemGray4).opacity(colorScheme == .dark ? 0.3 : 0.6),
+                lineWidth: 0.5
             )
-            
-            // Floating emoji with enhanced styling
-            VStack {
-                HStack {
-                    Spacer()
-                    EmojiIconView.large(
-                        emoji: budget.emoji,
-                        gradientColors: budget.gradientColors,
-                        animate: false
-                    )
-                    .padding(.top, 12)
-                    .padding(.trailing, 20)
-                }
-                Spacer()
-            }
-            
-            // Main content
-            VStack(spacing: 18) {
-                // Header section
-                HStack {
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(budget.budgetName)
-                            .font(.title3)
-                            .fontWeight(.bold)
-                            .foregroundStyle(.primary)
-                            .lineLimit(1)
-                            .padding(.trailing, 80)
+            .overlay(
+                VStack(spacing: 16) {
+                    // Header section
+                    HStack {
+                        VStack(alignment: .leading, spacing: 6) {
+                            HStack(spacing: 20) {
+                                // Clean emoji display
+                                Text(budget.emoji)
+                                    .font(.system(size: 50))
+                                    .background(
+                                        Circle()
+                                            .fill(Color(.systemBackground))
+                                            .opacity(colorScheme == .dark ? 0.3 : 0.8)
+                                            .frame(width: 70, height: 70)
+
+                                    )
+                                
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(budget.budgetName)
+                                        .font(.system(size: 20))
+                                        .fontWeight(.semibold)
+                                        .foregroundStyle(.primary)
+                                        .lineLimit(1)
+                                    
+                                    HStack(spacing: 7) {
+                                        Image(systemName: "calendar")
+                                            .font(.title2)
+                                            .foregroundStyle(.secondary)
+                                        
+                                        Text(dateFormatter.string(from: budget.creationDate))
+                                            .font(.caption)
+                                            .foregroundStyle(.secondary)
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.top, 20)
                         
-                        HStack(spacing: 4) {
-                            Image(systemName: "calendar")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
+                        Spacer()
+                        
+                        // Status indicator
+                        VStack(alignment: .trailing, spacing: 4) {
+                            if isOverBudget {
+                                Image(systemName: "exclamationmark.triangle.fill")
+                                    .foregroundStyle(.red)
+                                    .font(.title3)
+                            } else {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundStyle(progressPercentage < 0.8 ? .green : .orange)
+                                    .font(.title3)
+                            }
                             
-                            Text(dateFormatter.string(from: budget.creationDate))
+                            Text("\(Int(progressPercentage * 100))%")
                                 .font(.caption)
                                 .fontWeight(.medium)
                                 .foregroundStyle(.secondary)
                         }
                     }
-                    Spacer()
-                }
-                
-                // Progress section
-                VStack(spacing: 10) {
-                    // Enhanced progress bar
-                    ProgressIndicatorView(budget: budget, animateProgress: true)
                     
-                    // Enhanced amount info cards
-                    HStack(spacing: 8) {
+                    // Progress bar
+                    ProgressBarView(budget: budget, style: .budgetCell)
+                    
+                    // Amount cards
+                    HStack(spacing: 12) {
                         AmountCard(
-                            title: LocalizedStringKey("total_amount"),
+                            title: "Total",
                             amount: budget.totalAmount,
-                            icon: "creditcard.fill",
-                            color: .blue,
-                            colorScheme: colorScheme
+                            icon: "creditcard",
+                            color: .blue
                         )
                         
                         AmountCard(
-                            title: LocalizedStringKey("spent"),
+                            title: "Spent",
                             amount: budget.spentAmount,
-                            icon: isOverBudget ? "exclamationmark.triangle.fill" : "minus.circle.fill",
-                            color: isOverBudget ? .red : .orange,
-                            colorScheme: colorScheme
+                            icon: isOverBudget ? "exclamationmark.triangle" : "minus.circle",
+                            color: isOverBudget ? .red : .orange
                         )
                         
                         AmountCard(
-                            title: LocalizedStringKey("remaining"),
+                            title: "Left",
                             amount: budget.remainingAmount,
-                            icon: budget.remainingAmount > 0 ? "plus.circle.fill" : "checkmark.circle.fill",
-                            color: remainingAmountColor,
-                            colorScheme: colorScheme
+                            icon: budget.remainingAmount > 0 ? "plus.circle" : "checkmark.circle",
+                            color: remainingAmountColor
                         )
                     }
                 }
-            }
-            .padding(.horizontal, 24)
-            .padding(.vertical, 12)
-        }
-        .frame(height: 160)
+                .padding(.horizontal, 20)
+                .padding(.vertical, 12)
+            )
+            .frame(height: 200)
     }
     
     // MARK: - Helper Properties
@@ -126,28 +137,13 @@ struct BudgetCellView: View {
             return .red
         }
     }
-    
-    // MARK: - Methods
-    private func formattedCurrency(amount: Double) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = Locale.current
-        formatter.maximumFractionDigits = amount.truncatingRemainder(dividingBy: 1) == 0 ? 0 : 2
-        return formatter.string(from: NSNumber(value: amount)) ?? "\(amount) €"
-    }
-    
-    private var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .none
-        return formatter
-    }
+
 }
 
 // MARK: - Preview
 #Preview {
     VStack(spacing: 20) {
-        // Light theme
+        // Normal budget
         BudgetCellView(
             budget: Budget(
                 budgetName: "Groceries Budget",
@@ -160,9 +156,8 @@ struct BudgetCellView: View {
                 expenses: []
             )
         )
-        .preferredColorScheme(.light)
         
-        // Dark theme - over budget example
+        // Over budget example
         BudgetCellView(
             budget: Budget(
                 budgetName: "Entertainment",
@@ -175,7 +170,20 @@ struct BudgetCellView: View {
                 expenses: []
             )
         )
-        .preferredColorScheme(.dark)
+        
+        // Nearly finished budget
+        BudgetCellView(
+            budget: Budget(
+                budgetName: "Transport",
+                totalAmount: 300.0,
+                spentAmount: 280.0,
+                remainingAmount: 20.0,
+                creationDate: Date(),
+                emoji: "🚗",
+                gradientColors: [Color.green, Color.blue],
+                expenses: []
+            )
+        )
     }
     .padding()
     .background(Color(.systemGroupedBackground))

@@ -150,6 +150,12 @@
         }
       }
     },
+    "of" : {
+
+    },
+    "Over Budget" : {
+
+    },
     "pdfs_list_view_navigationTitle" : {
       "localizations" : {
         "en" : {
@@ -166,7 +172,11 @@
         }
       }
     },
+    "Progress" : {
+
+    },
     "progress_bar_line_title" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

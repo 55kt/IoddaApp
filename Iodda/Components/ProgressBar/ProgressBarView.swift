@@ -5,7 +5,6 @@
 //  Created by Vlad on 2/7/25.
 //
 
-
 import SwiftUI
 
 enum ProgressBarStyle {
@@ -18,26 +17,11 @@ struct ProgressBarView: View {
     let style: ProgressBarStyle
     @State private var animateProgress = false
     
-    private var progressPercentage: Double {
-        guard budget.totalAmount > 0 else { return 0 }
-        return min(budget.spentAmount / budget.totalAmount, 1.0)
-    }
-    
-    private var isOverBudget: Bool {
-        budget.spentAmount > budget.totalAmount
-    }
-
-    private var progressBarColor: Color {
-        if isOverBudget {
-            return .red
-        } else if progressPercentage < 0.8 {
-            return .green
-        } else {
-            return .orange
-        }
-    }
-    
     var body: some View {
+        let progressPercentage = progressPercentage(spentAmount: budget.spentAmount, totalAmount: budget.totalAmount)
+        let isOverBudget = isOverBudget(spentAmount: budget.spentAmount, totalAmount: budget.totalAmount)
+        let progressBarColor = isOverBudget ? Color.red : (progressPercentage < 0.8 ? .green : .orange)
+
         switch style {
         case .budgetCell:
             VStack(spacing: 8) {
@@ -150,6 +134,45 @@ struct ProgressBarView: View {
                     }
                 }
             }
+            .onAppear {
+                withAnimation(.easeInOut(duration: 1.2)) {
+                    animateProgress = true
+                }
+            }
         }
     }
+}
+
+#Preview {
+    VStack(spacing: 20) {
+        ProgressBarView(
+            budget: Budget(
+                budgetName: "Trip Budget",
+                totalAmount: 1000.0,
+                spentAmount: 500.0,
+                remainingAmount: 500.0,
+                creationDate: Date(),
+                emoji: "✈️",
+                gradientColors: [Color.blue, Color.purple],
+                expenses: []
+            ),
+            style: .budgetCell
+        )
+
+        ProgressBarView(
+            budget: Budget(
+                budgetName: "Over Budget",
+                totalAmount: 1000.0,
+                spentAmount: 1200.0,
+                remainingAmount: -200.0,
+                creationDate: Date(),
+                emoji: "🚨",
+                gradientColors: [Color.red, Color.orange],
+                expenses: []
+            ),
+            style: .expenseHeader
+        )
+    }
+    .padding()
+    .background(Color(.systemGroupedBackground))
 }

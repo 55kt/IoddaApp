@@ -16,7 +16,6 @@ struct BudgetsListView: View {
     // MARK: - Body
     var body: some View {
         ZStack {
-            
             IoddaLogo(logoSize: 200, logoOpacity: 0.5, showAppName: false)
                 .ignoresSafeArea()
                 .zIndex(0)

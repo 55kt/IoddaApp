@@ -21,3 +21,12 @@ public let dateFormatter: DateFormatter = {
     formatter.timeStyle = .none
     return formatter
 }()
+
+public func progressPercentage(spentAmount: Double, totalAmount: Double) -> Double {
+    guard totalAmount > 0 else { return 0 }
+    return min(spentAmount / totalAmount, 1.0)
+}
+
+public func isOverBudget(spentAmount: Double, totalAmount: Double) -> Bool {
+    spentAmount > totalAmount
+}

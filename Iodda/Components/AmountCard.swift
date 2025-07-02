@@ -27,8 +27,8 @@ struct AmountCard: View {
                     .foregroundStyle(.secondary)
             }
             
-            Text(formattedAmount)
-                .font(.caption)
+            Text(formattedCurrency(amount: amount))
+                .font(.system(size: 15))
                 .fontWeight(.semibold)
                 .foregroundStyle(.primary)
                 .lineLimit(1)
@@ -41,14 +41,6 @@ struct AmountCard: View {
             RoundedRectangle(cornerRadius: 8)
                 .fill(Color(.systemGray6).opacity(colorScheme == .dark ? 0.2 : 0.6))
         )
-    }
-    
-    private var formattedAmount: String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.locale = Locale.current
-        formatter.maximumFractionDigits = amount.truncatingRemainder(dividingBy: 1) == 0 ? 0 : 2
-        return formatter.string(from: NSNumber(value: amount)) ?? "\(amount) €"
     }
 }
 

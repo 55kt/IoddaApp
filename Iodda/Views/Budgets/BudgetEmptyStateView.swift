@@ -9,150 +9,114 @@ import SwiftUI
 
 struct BudgetEmptyListView: View {
     // MARK: - Properties
-    @State private var isAnimating = false
-    @State private var floatingOffset: CGFloat = 0
-    @State private var isButtonAnimating = false
+    @Environment(\.colorScheme) private var colorScheme
     
     // MARK: - Body
     var body: some View {
         VStack(spacing: 32) {
-            // Animated floating card
-            ZStack {
-                
-                // Background with glassmorphism effect
-                RoundedRectangle(cornerRadius: 24)
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Color.blue.opacity(0.4),
-                                Color.purple.opacity(0.3),
-                                Color.teal.opacity(0.2)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )// LinearGradient
-                    )// fill
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 24)
-                            .stroke(
-                                LinearGradient(
-                                    colors: [Color.white.opacity(0.3), Color.clear],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                ),
-                                lineWidth: 1
-                            )// stroke
-                    )// overlay
-                    .shadow(color: .black.opacity(0.1), radius: 20, x: 0, y: 10)
-                
-                // Floating emoji with backdrop blur
-                VStack {
-                    HStack {
-                        Spacer()
-                        ZStack {
-                            Circle()
-                                .fill(.ultraThinMaterial)
-                                .frame(width: 70, height: 70)
-                                .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
-                            
-                            Text("💰")
-                                .font(.system(size: 40))
-                                .scaleEffect(isAnimating ? 1.1 : 1.0)
-                                .animation(
-                                    .easeInOut(duration: 2)
-                                    .repeatForever(autoreverses: true),
-                                    value: isAnimating
-                                )
-                        }// ZStack
-                        .padding(.top, 8)
-                        .padding(.trailing, 20)
-                    }// HStack
-                    Spacer()
-                }// VStack
-                
-                // Content
-                VStack(spacing: 20) {
-                    // Header section
-                    HStack {
-                        VStack(alignment: .leading, spacing: 8) {
-                            Text("your_first_budget")
-                                .font(.title2)
-                                .fontWeight(.bold)
-                                .foregroundStyle(.primary)
-                                .padding(.trailing, 80)
-                            
-                            HStack(spacing: 6) {
-                                Image(systemName: "sparkles")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                                
-                                Text("start_tracking_expenses")
-                                    .font(.caption)
-                                    .foregroundStyle(.secondary)
-                            }// HStack
-                        }// VStack
-                        Spacer()
-                    }// HStack
-                    
-                    // Progress section (placeholder)
+            // Professional budget preview card
+            RoundedRectangle(cornerRadius: 16)
+                .fill(.ultraThinMaterial)
+                .stroke(
+                    Color(.systemGray4).opacity(colorScheme == .dark ? 0.3 : 0.6),
+                    lineWidth: 0.5
+                )
+                .overlay(
                     VStack(spacing: 16) {
+                        // Header section matching BudgetCellView
+                        HStack {
+                            VStack(alignment: .leading, spacing: 6) {
+                                HStack(spacing: 20) {
+                                    // Clean emoji display
+                                    Text("💰")
+                                        .font(.system(size: 50))
+                                        .background(
+                                            Circle()
+                                                .fill(Color(.systemBackground))
+                                                .opacity(colorScheme == .dark ? 0.3 : 0.8)
+                                                .frame(width: 70, height: 70)
+                                        )
+                                    
+                                    VStack(alignment: .leading, spacing: 2) {
+                                        Text("your_first_budget")
+                                            .font(.system(size: 20))
+                                            .fontWeight(.semibold)
+                                            .foregroundStyle(.primary)
+                                            .lineLimit(1)
+                                        
+                                        HStack(spacing: 7) {
+                                            Image(systemName: "sparkles")
+                                                .font(.title2)
+                                                .foregroundStyle(.secondary)
+                                            
+                                            Text("start_tracking_expenses")
+                                                .font(.caption)
+                                                .foregroundStyle(.secondary)
+                                        }// HStack
+                                    }// VStack
+                                }// HStack
+                            }// VStack
+                            .padding(.top, 20)
+                            
+                            Spacer()
+                            
+                            // Placeholder status indicator
+                            VStack(alignment: .trailing, spacing: 4) {
+                                Image(systemName: "plus.circle")
+                                    .foregroundStyle(.blue)
+                                    .font(.title3)
+                                
+                                Text("0%")
+                                    .font(.caption)
+                                    .fontWeight(.medium)
+                                    .foregroundStyle(.secondary)
+                            }// VStack
+                        }// HStack
+                        
                         // Placeholder progress bar
                         ZStack(alignment: .leading) {
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(Color.black.opacity(0.1))
-                                .frame(height: 6)
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(Color(.systemGray5))
+                                .frame(height: 8)
                             
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(
-                                    LinearGradient(
-                                        colors: [.green.opacity(0.3), .teal.opacity(0.3)],
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    )// LinearGradient
-                                )// fill
-                                .frame(width: 0, height: 6)
+                            RoundedRectangle(cornerRadius: 6)
+                                .fill(.blue.opacity(0.3))
+                                .frame(width: 0, height: 8)
                         }// ZStack
                         .frame(maxWidth: .infinity)
                         
-                        // Placeholder amount info cards
-                        HStack(spacing: 6) {
+                        // Placeholder amount cards matching BudgetCellView style
+                        HStack(spacing: 12) {
                             PlaceholderAmountCard(
-                                title: "total_amount",
-                                icon: "creditcard.fill",
+                                title: "Total",
+                                icon: "creditcard",
                                 color: .blue
                             )
                             
                             PlaceholderAmountCard(
-                                title: "spent",
-                                icon: "minus.circle.fill",
+                                title: "Spent",
+                                icon: "minus.circle",
                                 color: .orange
                             )
                             
                             PlaceholderAmountCard(
-                                title: "remaining",
-                                icon: "plus.circle.fill",
+                                title: "Left",
+                                icon: "plus.circle",
                                 color: .green
                             )
                         }// HStack
                     }// VStack
-                }// VStack
-                .padding(.horizontal, 24)
-                .padding(.vertical, 16)
-            }// ZStack
-            .frame(height: 160)
-            .offset(y: floatingOffset)
-            .animation(
-                .easeInOut(duration: 3)
-                .repeatForever(autoreverses: true),
-                value: floatingOffset
-            )// animation
+                        .padding(.horizontal, 20)
+                        .padding(.vertical, 12)
+                )
+                .frame(height: 200)
             
             // Call to action section
             VStack(spacing: 20) {
                 VStack(spacing: 12) {
                     Text("no_budgets_yet")
-                        .font(.title)
-                        .fontWeight(.bold)
+                        .font(.title2)
+                        .fontWeight(.semibold)
                         .foregroundStyle(.primary)
                         .multilineTextAlignment(.center)
                     
@@ -169,35 +133,30 @@ struct BudgetEmptyListView: View {
             }// VStack
         }// VStack
         .padding(.horizontal, 20)
-        .onAppear {
-            isAnimating = true
-            floatingOffset = -5
-        }// onAppear
     }// body
 }// View
 
 // MARK: - PlaceholderAmountCard SubView
 struct PlaceholderAmountCard: View {
     // MARK: - Properties
-    let title: LocalizedStringKey
+    let title: String
     let icon: String
     let color: Color
+    @Environment(\.colorScheme) private var colorScheme
     
     // MARK: - Body
     var body: some View {
-        VStack(spacing: 6) {
+        VStack(spacing: 8) {
             HStack(spacing: 4) {
                 Image(systemName: icon)
-                    .font(.caption2)
-                    .foregroundStyle(color.opacity(0.6))
+                    .font(.caption)
+                    .foregroundStyle(color)
                 
                 Text(title)
-                    .font(.caption2)
+                    .font(.caption)
                     .fontWeight(.medium)
-                    .foregroundStyle(.secondary.opacity(0.7))
-                    .multilineTextAlignment(.center)
+                    .foregroundStyle(.secondary)
                     .lineLimit(1)
-                    .minimumScaleFactor(0.8)
             }// HStack
             
             Text("--")
@@ -206,12 +165,15 @@ struct PlaceholderAmountCard: View {
                 .foregroundStyle(.primary.opacity(0.5))
         }// VStack
         .padding(.horizontal, 12)
-        .padding(.vertical, 8)
+        .padding(.vertical, 10)
         .frame(maxWidth: .infinity)
-        .background(.ultraThinMaterial.opacity(0.7), in: RoundedRectangle(cornerRadius: 8))
+        .background(
+            RoundedRectangle(cornerRadius: 8)
+                .fill(Color(.systemGray6).opacity(colorScheme == .dark ? 0.3 : 0.8))
+        )
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(color.opacity(0.2), lineWidth: 0.5)
+                .stroke(Color(.systemGray4).opacity(0.5), lineWidth: 0.5)
         )// overlay
     }// body
 }// View

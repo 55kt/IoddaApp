@@ -9,10 +9,11 @@ import SwiftUI
 
 struct EmptyStateButtonView: View {
     // MARK: - Properties
-    @State private var isAnimating = false
     var buttonName: String
     var action: () -> Void
+    @Environment(\.colorScheme) private var colorScheme
     
+    // MARK: - Body
     var body: some View {
         Button(action: {
             action()
@@ -29,24 +30,15 @@ struct EmptyStateButtonView: View {
             .padding(.horizontal, 32)
             .padding(.vertical, 16)
             .background(
-                LinearGradient(
-                    colors: [.blue, .purple],
-                    startPoint: .leading,
-                    endPoint: .trailing
-                ),
-                in: RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(.blue)
             )// background
-            .shadow(color: .blue.opacity(0.3), radius: 10, x: 0, y: 5)
         }// Button
-        .scaleEffect(isAnimating ? 1.05 : 1.0)
-        .animation(
-            .easeInOut(duration: 2.5)
-            .repeatForever(autoreverses: true),
-            value: isAnimating
-        )// animation
-    }
-}
+        .buttonStyle(.plain)
+    }// body
+}// View
 
+// MARK: - Preview
 #Preview {
     EmptyStateButtonView(buttonName: "Empty State Button") {}
 }

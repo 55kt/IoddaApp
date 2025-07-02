@@ -11,19 +11,12 @@ struct BudgetCellView: View {
     // MARK: - Properties
     let budget: Budget
     @Environment(\.colorScheme) private var colorScheme
-    
-    // MARK: - Computed Properties
-    private var progressPercentage: Double {
-        guard budget.totalAmount > 0 else { return 0 }
-        return min(budget.spentAmount / budget.totalAmount, 1.0)
-    }
-    
-    private var isOverBudget: Bool {
-        budget.spentAmount > budget.totalAmount
-    }
-    
+
     // MARK: - Body
     var body: some View {
+        let progressPercentage = progressPercentage(spentAmount: budget.spentAmount, totalAmount: budget.totalAmount)
+        let isOverBudget = isOverBudget(spentAmount: budget.spentAmount, totalAmount: budget.totalAmount)
+        
         RoundedRectangle(cornerRadius: 16)
             .fill(.ultraThinMaterial)
             .stroke(
@@ -44,7 +37,7 @@ struct BudgetCellView: View {
                                             .fill(Color(.systemBackground))
                                             .opacity(colorScheme == .dark ? 0.3 : 0.8)
                                             .frame(width: 70, height: 70)
-
+                                        
                                     )
                                 
                                 VStack(alignment: .leading, spacing: 2) {
@@ -62,10 +55,10 @@ struct BudgetCellView: View {
                                         Text(dateFormatter.string(from: budget.creationDate))
                                             .font(.caption)
                                             .foregroundStyle(.secondary)
-                                    }
-                                }
-                            }
-                        }
+                                    }// HStack
+                                }// VStack
+                            }// HStack
+                        }// VStack
                         .padding(.top, 20)
                         
                         Spacer()
@@ -86,8 +79,8 @@ struct BudgetCellView: View {
                                 .font(.caption)
                                 .fontWeight(.medium)
                                 .foregroundStyle(.secondary)
-                        }
-                    }
+                        }// VStack
+                    }// HStack
                     
                     // Progress bar
                     ProgressBarView(budget: budget, style: .budgetCell)
@@ -114,13 +107,13 @@ struct BudgetCellView: View {
                             icon: budget.remainingAmount > 0 ? "plus.circle" : "checkmark.circle",
                             color: remainingAmountColor
                         )
-                    }
-                }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 12)
+                    }// HStack
+                }// VStack
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 12)
             )
             .frame(height: 200)
-    }
+    }// body
     
     // MARK: - Helper Properties
     private var remainingAmountColor: Color {
@@ -137,8 +130,7 @@ struct BudgetCellView: View {
             return .red
         }
     }
-
-}
+}// View
 
 // MARK: - Preview
 #Preview {
